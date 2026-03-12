@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "F:\hackoweek 6\sports_facility_lstm\train_model.py", line 4, in <module>
+    import torch
+  File "C:\Users\Affan\AppData\Local\Programs\Python\Python311\Lib\site-packages\torch\__init__.py", line 280, in <module>
+    _load_dll_libraries()
+  File "C:\Users\Affan\AppData\Local\Programs\Python\Python311\Lib\site-packages\torch\__init__.py", line 263, in _load_dll_libraries
+    raise err
+OSError: [WinError 1114] A dynamic link library (DLL) initialization routine failed. Error loading "C:\Users\Affan\AppData\Local\Programs\Python\Python311\Lib\site-packages\torch\lib\c10.dll" or one of its dependencies.

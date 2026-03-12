@@ -1,0 +1,24 @@
+Traceback (most recent call last):
+  File "C:\Users\Affan\AppData\Local\Programs\Python\Python311\Lib\site-packages\tensorflow\python\pywrap_tensorflow.py", line 73, in <module>
+    from tensorflow.python._pywrap_tensorflow_internal import *
+ImportError: DLL load failed while importing _pywrap_tensorflow_internal: A dynamic link library (DLL) initialization routine failed.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "F:\hackoweek 6\sports_facility_lstm\train_model.py", line 4, in <module>
+    import tensorflow as tf
+  File "C:\Users\Affan\AppData\Local\Programs\Python\Python311\Lib\site-packages\tensorflow\__init__.py", line 40, in <module>
+    from tensorflow.python import pywrap_tensorflow as _pywrap_tensorflow  # pylint: disable=unused-import
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Affan\AppData\Local\Programs\Python\Python311\Lib\site-packages\tensorflow\python\pywrap_tensorflow.py", line 88, in <module>
+    raise ImportError(
+ImportError: Traceback (most recent call last):
+  File "C:\Users\Affan\AppData\Local\Programs\Python\Python311\Lib\site-packages\tensorflow\python\pywrap_tensorflow.py", line 73, in <module>
+    from tensorflow.python._pywrap_tensorflow_internal import *
+ImportError: DLL load failed while importing _pywrap_tensorflow_internal: A dynamic link library (DLL) initialization routine failed.
+
+
+Failed to load the native TensorFlow runtime.
+See https://www.tensorflow.org/install/errors for some common causes and solutions.
+If you need help, create an issue at https://github.com/tensorflow/tensorflow/issues and include the entire stack trace above this error message.
