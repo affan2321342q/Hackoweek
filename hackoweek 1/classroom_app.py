@@ -9,12 +9,12 @@ import warnings
 
 warnings.filterwarnings('ignore')
 
-# Load dataset from CSV
+
 df = pd.read_csv('classroom_wifi_energy.csv')
 df['timestamp'] = pd.to_datetime(df['timestamp'])
 df.set_index('timestamp', inplace=True)
 
-# Dash App
+
 app = dash.Dash(__name__)
 
 app.layout = html.Div([
@@ -36,21 +36,20 @@ app.layout = html.Div([
     [Input('refresh-button', 'n_clicks')]
 )
 def update_forecast(n_clicks):
-    # Use the last 72 hours for training to keep it fast while capturing daily seasonality
+    
     train_data = df.iloc[-72:]
     
-    # Exogenous variable: occupancy
+  
     exog_train = train_data['occupancy']
     endog_train = train_data['electricity']
     
-    # Train ARIMAX (ARIMA with exogenous variable)
-    # Using order (2,1,2) for illustration. In production, this can be auto-tuned.
+    
     model = ARIMA(endog_train, exog=exog_train, order=(2, 1, 2))
     fit_model = model.fit()
     
-    # Forecast the next 6 hours
+   
     num_steps = 6
-    # Assume occupancy for the next hours will be similar to the same time yesterday
+   
     last_occupancy = df['occupancy'].iloc[-24: -24 + num_steps].values
     
     forecast = fit_model.get_forecast(steps=num_steps, exog=last_occupancy)
@@ -61,25 +60,25 @@ def update_forecast(n_clicks):
     
     fig = go.Figure()
     
-    # Historical Electricity
+    
     fig.add_trace(go.Scatter(
         x=train_data.index, y=train_data['electricity'],
         mode='lines+markers', name='Actual Electricity (kW)', line=dict(color='#00d2ff', width=3)
     ))
     
-    # Historical Occupancy (scaled for visualization)
+    
     fig.add_trace(go.Scatter(
         x=train_data.index, y=train_data['occupancy'] * 0.2, # Scaled down
         mode='lines', name='Wi-Fi Occupancy (Scaled)', line=dict(color='gray', dash='dot')
     ))
     
-    # Forecast Mean
+    
     fig.add_trace(go.Scatter(
         x=future_dates, y=forecast_mean,
         mode='lines+markers', name='Forecasted Electricity', line=dict(color='#ff7e5f', width=3, dash='dash')
     ))
     
-    # Confidence Intervals
+    
     fig.add_trace(go.Scatter(
         x=list(future_dates) + list(future_dates)[::-1],
         y=list(conf_int.iloc[:, 1]) + list(conf_int.iloc[:, 0])[::-1],
