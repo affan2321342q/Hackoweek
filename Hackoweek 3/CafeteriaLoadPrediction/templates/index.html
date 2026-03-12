@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cafeteria Load Predictor</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header class="glass-header">
+            <div class="header-content">
+                <div class="title-group">
+                    <h1>Cafeteria Load Predictor</h1>
+                    <span class="live-badge">
+                        <span class="pulse"></span> LIVE
+                    </span>
+                </div>
+                <div class="status-cards">
+                    <div class="card">
+                        <span class="card-label">Current Temp</span>
+                        <span class="card-value" id="current-temp">--°C</span>
+                    </div>
+                     <div class="card">
+                        <span class="card-label">Predicted Load</span>
+                        <span class="card-value highlight" id="current-predicted">--</span>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <main class="dashboard-grid">
+            <div class="chart-container glass-panel">
+                <canvas id="loadChart"></canvas>
+            </div>
+            <div class="info-panel glass-panel">
+                <h2>Real-Time Insights</h2>
+                <div class="insights-content">
+                    <p>Our linear regression model processes continuous streams of weather and time data to forecast real-time load surges.</p>
+                    <div class="metric-row">
+                        <span>Simulated Reality (<span style="color:var(--actual-color)">Green</span>)</span>
+                        <p style="font-size:0.8rem; color:var(--text-secondary)">Actual historical trend with noise</p>
+                    </div>
+                    <div class="metric-row" style="margin-top: 1rem;">
+                        <span>Predicted Load (<span style="color:var(--pred-color)">Red</span>)</span>
+                        <p style="font-size:0.8rem; color:var(--text-secondary)">Forecasted base volume based on inputs</p>
+                    </div>
+                </div>
+                <div id="connection-status" class="status-connecting">Connecting...</div>
+            </div>
+        </main>
+    </div>
+    <script src="/static/script.js"></script>
+</body>
+</html>
