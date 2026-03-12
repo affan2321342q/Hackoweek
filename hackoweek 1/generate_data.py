@@ -7,7 +7,7 @@ def generate_dorm_energy():
     hours = days * 24
     dates = pd.date_range(end=pd.Timestamp.now().floor('D') + pd.Timedelta(days=1) - pd.Timedelta(hours=1), periods=hours, freq='h')
     
-    # Base pattern: low at night, peak in evening (18-22)
+    
     base_pattern = [20, 18, 17, 16, 17, 19, 25, 30, 35, 38, 40, 42, 40, 38, 36, 38, 45, 55, 60, 65, 58, 45, 30, 25]
     base_data = np.tile(base_pattern, days)
     noise = np.random.normal(0, 5, hours)
